@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mine</title>
+  <style>
+    * {
+      text-align: center;
+    }
+
+    #board {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #board tr td {
+      border: 1px solid white;
+      background: #34da79;
+      width: 16px;
+      height: 16px;
+      text-align: center;
+    }
+
+    #board tr td.clicked {
+      background: #6c5ee7;
+    }
+
+    #board tr td.mine {
+      background: #FF0000;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>지뢰 찾기</h1>
+  <table id="board">
+  </table>
+  <button onclick="getGrid();">새로운 게임</button>
+  <script>
+    let grid = document.getElementById("board")
+    getGrid();
+    function getGrid() {
+      grid.innerHTML = "";
+      for (let i = 0; i < 8; i++) {
+        let row = grid.insertRow(i); // 테이블 행추가
+        for (let j = 0; j < 8; j++) {
+          cell = row.insertCell(j); // 테이블 열추가
+          cell.onclick = function () { clickBox(this); };
+          // 테이블 열마다. click 이벤트 발생 시 발생함수 설정.
+          let mine = document.createAttribute("mine");
+          if (Math.random() < 0.3)
+            // random 함수는 0~1 사이의 값을 가우시안 분포로 만듦
+            // 0.3 비율로 속성값 mine을 변수안에 만든 후, 
+            // 0.3이 안넘어가면 mine 값이 true가 되게끔  
+            mine.value = "true";
+          else
+            mine.value = "false";
+
+          cell.setAttributeNode(mine); //mine 속성을 cell에 부여.
+
+        }
+      }
+    }
+    function clickBox(cell) {
+      if (cell.getAttribute("mine") == "true") {//cell은 board를 행,렬로 나눈 공간들.
+        // 각 랜덤 값들이 부여되어 있고, mine 속성이 있는데 이 랜덤값에 따라 true,false발동
+        // 여기서는 mine 값이 true, flase 값인지에 따라 행동을 규정하고 있음.
+        cell.className = "mine";
+        alert("게임이 종료되었습니다.");
+      } else {
+        cell.className = "clicked"
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>
