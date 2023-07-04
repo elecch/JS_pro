@@ -7,7 +7,7 @@ class Queue {
       this.items.push(element)
   }
   dequeue() {
-      return this.items.shift()
+      return this.items.shift() // shift()는 선형시간으로 돌아가서 스택에서 사용불가.
   }
 
   isEmpty() {

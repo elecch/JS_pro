@@ -7,7 +7,7 @@ class Stack{
     this.items.push(element);
   }
   destack(){
-    return this.items.pop()
+    return this.items.pop() // stack은 push랑 pop으로 구현 가능
   }
 
   isEmpty(){
