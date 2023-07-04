@@ -130,13 +130,14 @@ body {
   padding: 8px 0;
 }
 
-#result{
-  display: flex;
-  max-width: 1200px;
+#result {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
-  flex-direction: wrap;
-  flex-wrap: wrap;
-  justify-content: center;
+}
+
+.card {
+  flex-basis: calc(20% - 15px); /* 추가된 부분 */
 }
 
 @media screen and (max-width: 550px){
